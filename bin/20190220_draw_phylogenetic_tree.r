@@ -23,22 +23,22 @@ accs <- co_occur_xl %>%
   pull()
 
 # Pull the sequences
-sqs <- entrez_fetch(id = accs, db = "protein", rettype = "fasta",
-                    api_key="826357f5ff17c7ec62e583909071e94f9d08")
+# sqs <- entrez_fetch(id = accs, db = "protein", rettype = "fasta",
+#                    api_key="826357f5ff17c7ec62e583909071e94f9d08")
 
 # Write the sequences to file
-write(sqs, "data/124_triuret_hydrolase_seqs.fasta")
+# write(sqs, "data/124_triuret_hydrolase_seqs.fasta")
 
 # Read in fasta
 aa <- readAAStringSet("data/124_triuret_hydrolase_seqs.fasta")
 summary(width(aa)) # width distribution looks good
 
-# Align sequences
-aa_al <- AlignSeqs(aa)
-aa_adj <- AdjustAlignment(aa_al)
-aa_stag <- StaggerAlignment(aa_adj)
-BrowseSeqs(aa_stag)
-writeXStringSet(aa_stag, "data/124_triuret_hydrolase_seqs_aligned_stag.fasta")
+# Align sequences # Only needs to run once
+# aa_al <- AlignSeqs(aa)
+# aa_adj <- AdjustAlignment(aa_al)
+# aa_stag <- StaggerAlignment(aa_adj)
+# BrowseSeqs(aa_stag)
+# writeXStringSet(aa_stag, "data/124_triuret_hydrolase_seqs_aligned_stag.fasta")
 
 # Phylogeny using FastTree JTT + CAT model
 # FastTree < alignment_file > tree_file 
@@ -55,7 +55,7 @@ nb[[1]]
 
 # Get dna seg objects
 # Are all colored gray by default
-source("lib/get_dna_segs_v2.r")
+source("lib/get_dna_segs_v3.r")
 raw_segs <- get_dna_segs(nb)
 raw_segs[[1]]
 
@@ -73,9 +73,6 @@ pdf("output/seg_plot.pdf", width = 15, height = 50)
 plot_gene_map(segs)
 dev.off()
 
-colrd_segs[[1]]$name
-my_nwk$leaves
-
 
 tonam <- unlist(lapply(1:length(segs),function(x){ gsub("\\.","_",segs[[x]]$name[1]) }))
  # 124 names should match the tip labels
@@ -88,21 +85,29 @@ for(i in 1:length(tonam)){
 names(segs)
 
 source("lib/reorder_list.r")
+
 segs2 <- reorder_list(segs, names(my_nwk$leaves))
 numseqs <- length(segs2)
 names(segs2)
 
-org_annot <- orgs$genus_species[names(segs2) %in% orgs$query_fix]
-annot1 <- annotation(x1=mid_pos, text=dna_segs[[1]]$name)
+# Reorder organism names to match leaves
+neworgs <-rep(NA, length(segs))
+for(i in 1:length(segs)){
+  ind <- grep(names(segs)[i], names(my_nwk$leaves))
+  print(ind)
+  neworgs[ind]<- orgs$genus_species[i]
+}
+neworgs
 
-annots <- lapply(1:length(segs2), function(x){
+
+annots <- lapply(1:length(my_nwk$leaves), function(x){
   mid <- middle(segs2[[x]])
-  annot <- annotation(x1 = mid, text = c(rep("", nrow(segs2[[x]])-1), org_annot[x]))
+  annot <- annotation(x1 = mid, text = c(rep("", nrow(segs2[[x]])-1), neworgs[x]))
 })
 
 
 # Plot the tree
-pdf("output/triuret_gene_neighborhood_tree.pdf", width = 15, height = 50)
+pdf("output/triuret_gene_neighborhood_tree_names_fixed.pdf", width = 15, height = 50)
 plot_gene_map(segs2, tree = my_nwk, tree_width = 5, 
               tree_branch_labels_cex = 0,
               annotations = annots)
