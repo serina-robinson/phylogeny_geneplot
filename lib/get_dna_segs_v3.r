@@ -29,7 +29,7 @@ get_dna_segs<-function(nb, pfam_query){
                     pfa=pfam)
     dna_seg1<-dna_seg(df1)
     num<-length(dna_seg1$col)
-    dna_seg1$col<-"gray"
+    dna_seg1$col<-"black"
     dna_seg1$fill<-"gray"
     dna_seg1$gene_type<-"arrows"
     DL[[i]]<-dna_seg1
