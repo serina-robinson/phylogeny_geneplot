@@ -3,6 +3,7 @@ pacman::p_load("tidyverse", "genoPlotR","readxl", "janitor", "RColorBrewer","ren
 
 # Set working directory
 setwd("~/Documents/University_of_Minnesota/Wackett_Lab/github/phylogeny_geneplot/")
+# Adjust to your working directory
 
 # Read in the RODEO output (main_co_occur)
 co_occur_xl <- read_excel("data/triuret_main_co_occur.xlsx") %>%
@@ -13,7 +14,7 @@ orgs <- co_occur_xl %>%
   group_by(query) %>%
   dplyr::select(genus_species, query) %>%
   mutate(query_fix = gsub("\\.", "_", query)) %>%
-  slice(1) 
+  dplyr::slice(1) 
 orgs
 
 # Pull the accession number of the query sequences
@@ -92,17 +93,18 @@ names(segs2)
 
 # Reorder organism names to match leaves
 neworgs <-rep(NA, length(segs))
+
 for(i in 1:length(segs)){
   ind <- grep(names(segs)[i], names(my_nwk$leaves))
   print(ind)
   neworgs[ind]<- orgs$genus_species[i]
 }
-neworgs
 
 
+# Create custom annotations
 annots <- lapply(1:length(my_nwk$leaves), function(x){
   mid <- middle(segs2[[x]])
-  annot <- annotation(x1 = mid, text = c(rep("", nrow(segs2[[x]])-1), neworgs[x]))
+  annot <- genoPlotR::annotation(x1 = mid, text = c(rep("", nrow(segs2[[x]])-1), neworgs[x]))
 })
 
 
