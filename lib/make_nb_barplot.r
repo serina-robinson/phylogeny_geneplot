@@ -1,8 +1,9 @@
 make_nb_barplot<-function(noc){
 
-  #Trim the hmm column
-  noct<-noc[,c(1:2,4:(ncol(noc)-4))]
-
+  # Trim the hmm column
+  # noct<-noc[,c(1:2,4:(ncol(noc)-4))]
+  noct <- noc
+  
   #Group by the OleC neighborhoods
   nb<-list()
   Cacc<-unique(noct$query)
@@ -19,9 +20,9 @@ make_nb_barplot<-function(noc){
   #[1:8,] 
 
   #Get PFAM ids
-  desc1<-unlist(lapply(1:length(pfam10$pfam),function(x){noc$description1[grep(pfam10$pfam[x],noc$pfam_id1)][1]}))
-  desc2<-unlist(lapply(1:length(pfam10$pfam),function(x){noc$description1[grep(pfam10$pfam[x],noc$pfam_id1)][2]}))
-  pfam_desc<-data.frame(as.character(pfam10$pfam),pfam10$Freq,desc1,desc2,stringsAsFactors=F)
+  desc1 <- unlist(lapply(1:length(pfam10$pfam), function(x){ noc$description[grep(pfam10$pfam[x],noc$pfam_id1)][1] }))
+  desc2 <- unlist(lapply(1:length(pfam10$pfam), function(x){ noc$description[grep(pfam10$pfam[x],noc$pfam_id2)][1] }))
+  pfam_desc<-data.frame(as.character(pfam10$pfam), pfam10$Freq, desc1, desc2, stringsAsFactors=F)
   # head(pfam_desc)
   # pfam_desc$desc<-as.character(pfam_desc$desc)
   # pfam_desc$desc[pfam_desc$pfam=="NO PFAM MATCH"]<-"hypothetical protein"

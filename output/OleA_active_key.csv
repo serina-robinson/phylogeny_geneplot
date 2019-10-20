@@ -1,0 +1,18 @@
+users_name,master_well,acc,org,mean_activity,sd_activity,bin
+WP_012802190.1 3-oxoacyl-ACP synthase III [Kytococcus sedentarius],2-A7,WP_012802190,Kytococcus sedentarius,0.845544036,0.325922156,high
+WP_040156198.1_3-oxoacyl-ACP_synthase_III_[Mobilicoccus_massiliensis],B4,WP_040156198,Mobilicoccus massiliensis,0.762044468,0.005053867,high
+WP_088919872.1_3-oxoacyl-ACP_synthase_III_[Granulosicoccus_antarcticus],C5,WP_088919872,Granulosicoccus antarcticus,0.49257915,0.036074156,medium
+NP_635607.1 3-oxoacyl-ACP synthase [Xanthomonas campestris pv. campestris str. ATCC 33913],NA,NP_635607.1,Xanthomonas campestris,0.477559368,0.029486701,medium
+WP_076585679.1_3-oxoacyl-ACP_synthase_III_[Lysobacter_tolerans],A4,WP_076585679,Lysobacter tolerans,0.370313685,0.058189182,medium
+WP_114959563.1 3-oxoacyl-ACP synthase III [Thermomonas haemolytica],2-A6,WP_114959563,Thermomonas haemolytica,0.263844342,0.057248117,medium
+WP_022969495.1 3-oxoacyl-ACP synthase III [Arenimonas oryziterrae],2-H5,WP_022969495,Arenimonas oryziterrae,0.261958947,0.030114078,medium
+WP_003480168.1 3-oxoacyl-ACP synthase III [Xanthomonas translucens],2-D6,WP_003480168,Xanthomonas translucens,0.215600421,0.087519039,medium
+WP_117315975.1 3-oxoacyl-ACP synthase III [Chromatocurvus halotolerans],2-F5,WP_117315975,Chromatocurvus halotolerans,0.208835181,0.06414926,medium
+WP_130552392.1 MULTISPECIES: 3-oxoacyl-ACP synthase III [Pseudoxanthomonas],2-E5,WP_130552392,Pseudoxanthomonas,0.197633719,0.048621688,medium
+WP_097326105.1_ketoacyl-ACP_synthase_III_[Actinoplanes_atraurantiacus],F2,WP_097326105,Actinoplanes atraurantiacus,0.144842669,0.018193922,medium
+WP_091632192.1 3-oxoacyl-ACP synthase III [Micromonospora peucetia],2-B7,WP_091632192,Micromonospora peucetia,0.089500792,0.004548481,low
+WP_028771085.1 3-oxoacyl-ACP synthase III [Silanimonas lenta],2-B6,WP_028771085,Silanimonas lenta,0.073863107,0.019762364,low
+WP_012948569.1 3-oxoacyl-ACP synthase III [Geodermatophilus obscurus],2-G7,WP_012948569,Geodermatophilus obscurus,0.044362226,3.78E-16,low
+WP_056164922.1 3-oxoacyl-ACP synthase III [Leifsonia sp. Leaf325],2-A9,WP_056164922,Leifsonia sp. Leaf325,0.042476832,0.004234792,low
+WP_101686474.1 3-oxoacyl-ACP synthase III [Dermabacter hominis],2-C9,WP_101686474,Dermabacter hominis,0.023068358,0.006901143,low
+WP_003805730.1 3-oxoacyl-ACP synthase III [Arthrobacter globiformis],2-D10,WP_003805730,Arthrobacter globiformis,0.017079457,0.004077948,low

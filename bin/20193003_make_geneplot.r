@@ -42,8 +42,6 @@ orgs
 # Group by query
 nb <- co_occur_xl %>%
   split(.$query) 
-  
-
 
 # Get the most frequent PFAM IDs
 source("lib/make_nb_barplot.R")
@@ -51,23 +49,17 @@ colnames(co_occur_xl)
 pfams<-make_nb_barplot(co_occur_xl)
 pfams <- rbind(pfams[1:7,], pfams[pfams$pfam == "PF00535",])
 
-
 # Get dna seg objects
 # Are all colored gray by default
 source("lib/get_dna_segs_v3.r")
 raw_segs <- get_dna_segs(nb)
 head(raw_segs[[1]])
 
-# raw_segs[[1]]$pfa <- gsub("PF00501", "OleBC fusion", raw_segs[[1]]$pfa)
-# raw_segs[[4]]$pfa <- gsub("PF00501", "OleBC fusion", raw_segs[[1]]$pfa)
-raw_segs[[5]]$pfa <- gsub("PF08545", "PF08541", raw_segs[[5]]$pfa)
-raw_segs[[5]]$pfa <- gsub("PF01370", "PF01073", raw_segs[[5]]$pfa)
-raw_segs[[5]]$pfa <- gsub("PF08545", "PF08541", raw_segs[[5]]$pfa)
-
 # Color the dna segs
-# colrs <- fread("data/dna_seg_colors.txt", sep = " ", header = F, data.table = F)
-pal <- colorRampPalette(colors=brewer.pal(8,"Set1"))(nrow(pfams))
-colrs <- data.frame(cbind(as.character(pfams$pfam), pal), stringsAsFactors = F)
+pfam_desc$pfam
+pal
+colrs <- data.frame(cbind(as.character(pfam_desc$pfam), pal), stringsAsFactors = F)
+colrs
 
 colnames(colrs) <- c("V1", "V2")
 head(colrs)

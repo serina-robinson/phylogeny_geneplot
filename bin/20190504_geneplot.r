@@ -40,8 +40,6 @@ accs <- co_occur_xl %>%
 nb <- co_occur_xl %>%
   split(.$query) 
 
-
-
 # Get the most frequent PFAM IDs
 source("lib/make_nb_barplot.R")
 colnames(co_occur_xl)
